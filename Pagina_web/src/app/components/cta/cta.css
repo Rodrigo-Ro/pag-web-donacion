@@ -1,0 +1,9 @@
+.cta-section{
+    padding:100px 0;
+
+    background: linear-gradient(
+        135deg,
+        #0052cc,
+        #00c9a7
+    );
+}
