@@ -1,0 +1,51 @@
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+Testimonios
+</h2>
+
+<p class="text-muted">
+Historias reales de personas beneficiadas.
+</p>
+
+</div>
+
+<div class="row">
+
+<div
+class="col-lg-4 mb-4"
+*ngFor="let t of testimonios">
+
+<div class="card border-0 shadow-sm h-100">
+
+<div class="card-body">
+
+<div class="display-4 mb-3">
+👤
+</div>
+
+<h5>{{t.nombre}}</h5>
+
+<small class="text-muted">
+{{t.cargo}}
+</small>
+
+<p class="mt-3 fst-italic">
+"{{t.texto}}"
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
