@@ -1,87 +1,138 @@
 <section class="py-5">
 
-<div class="container">
+  <div class="container">
 
-<div class="row">
+    <div class="row">
 
-<div class="col-lg-7">
+      <!-- FORMULARIO -->
+      <div class="col-lg-7">
 
-<div class="card shadow-sm border-0">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
 
-<div class="card-body p-4">
+            <h2 class="fw-bold mb-4">Envíanos un mensaje</h2>
 
-<h2 class="fw-bold mb-4">
-Envíanos un mensaje
-</h2>
+            <!-- ÉXITO -->
+            <div *ngIf="successMessage" class="alert alert-success">
+              {{ successMessage }}
+            </div>
 
-<input
-class="form-control mb-3"
-placeholder="Nombre completo">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-<input
-class="form-control mb-3"
-placeholder="Correo electrónico">
+              <!-- NOMBRE -->
+              <div class="mb-3">
+                <label class="form-label">Nombre completo</label>
+                <input class="form-control"
+                       placeholder="Ej: Juan Pérez"
+                       formControlName="nombre">
 
-<input
-class="form-control mb-3"
-placeholder="Teléfono">
+                <small class="text-danger"
+                  *ngIf="contactForm.get('nombre')?.touched && contactForm.get('nombre')?.invalid">
+                  Ingresa tu nombre (mínimo 3 caracteres)
+                </small>
+              </div>
 
-<input
-class="form-control mb-3"
-placeholder="Asunto">
+              <!-- EMAIL -->
+              <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input class="form-control"
+                       placeholder="Ej: correo@gmail.com"
+                       formControlName="email">
 
-<textarea
-rows="5"
-class="form-control mb-3"
-placeholder="Mensaje">
-</textarea>
+                <small class="text-danger"
+                  *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">
+                  Ingresa un correo válido
+                </small>
+              </div>
 
-<button class="btn btn-success w-100">
-Enviar mensaje
-</button>
+              <!-- TELÉFONO -->
+              <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input class="form-control"
+                       placeholder="Ej: 912345678"
+                       maxlength="9"
+                       formControlName="telefono"
+                       (input)="allowOnlyNumbers($event)">
 
-</div>
+                <small class="text-danger"
+                  *ngIf="contactForm.get('telefono')?.touched && contactForm.get('telefono')?.invalid">
+                  Debe tener 9 dígitos
+                </small>
+              </div>
 
-</div>
+              <!-- ASUNTO (SELECT) -->
+              <div class="mb-3">
+                <label class="form-label">Asunto</label>
 
-</div>
+                <select class="form-select" formControlName="asunto">
+                  <option value="">Seleccione un asunto</option>
+                  <option *ngFor="let a of asuntos" [value]="a">
+                    {{ a }}
+                  </option>
+                </select>
 
-<div class="col-lg-5">
+                <small class="text-danger"
+                  *ngIf="contactForm.get('asunto')?.touched && contactForm.get('asunto')?.invalid">
+                  Selecciona un asunto
+                </small>
+              </div>
 
-<div class="card border-0 shadow-sm mb-3">
+              <!-- MENSAJE -->
+              <div class="mb-3">
+                <label class="form-label">Mensaje</label>
 
-<div class="card-body">
+                <textarea class="form-control"
+                          rows="5"
+                          placeholder="Escribe tu mensaje aquí..."
+                          formControlName="mensaje"></textarea>
 
-<h5>Información de contacto</h5>
+                <small class="text-danger"
+                  *ngIf="contactForm.get('mensaje')?.touched && contactForm.get('mensaje')?.invalid">
+                  Mínimo 10 caracteres
+                </small>
+              </div>
 
-<p>📍 Huancayo, Junín, Perú</p>
-<p>📞 +51 999 999 999</p>
-<p>✉ contacto@ayudahuancayo.org</p>
+              <!-- BOTÓN -->
+              <button class="btn btn-success w-100" type="submit">
+                Enviar mensaje
+              </button>
 
-</div>
+            </form>
 
-</div>
+          </div>
+        </div>
 
-<div class="card border-0 bg-success text-white">
+      </div>
 
-<div class="card-body text-center">
+      <!-- INFO -->
+      <div class="col-lg-5">
 
-<h5>WhatsApp</h5>
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body">
+            <h5>Información de contacto</h5>
+            <p>📍 Huancayo, Junín, Perú</p>
+            <p>📞 +51 999 999 999</p>
+            <p>✉ contacto@ayudahuancayo.org</p>
+          </div>
+        </div>
 
-<p>¿Necesitas ayuda inmediata?</p>
+        <div class="card border-0 bg-success text-white">
+          <div class="card-body text-center">
 
-<button class="btn btn-light">
-Abrir WhatsApp
-</button>
+            <h5>WhatsApp</h5>
+            <p>¿Necesitas ayuda inmediata?</p>
 
-</div>
+            <button class="btn btn-light">
+              Abrir WhatsApp
+            </button>
 
-</div>
+          </div>
+        </div>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>

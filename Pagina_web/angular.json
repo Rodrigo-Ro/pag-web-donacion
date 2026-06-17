@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "4e4c5caa-ef44-416b-b14a-b8d7efe383dd"
+    "analytics": "ac80f21a-88ef-4001-985b-8272d772bfb7"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -26,8 +26,6 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
