@@ -11,25 +11,28 @@ import { RouterLink } from '@angular/router';
 })
 export class Campanas {
 
-  campaigns = [
-    {
-      title: 'Abrigando Huancayo',
-      status: 'Urgente',
-      location: 'Pariahuanca',
-      progress: 75
-    },
-    {
-      title: 'Alimentos para Comedores',
-      status: 'Activa',
-      location: 'Huancayo',
-      progress: 60
-    },
-    {
-      title: 'Apoyo a Orfanatos',
-      status: 'Activa',
-      location: 'El Tambo',
-      progress: 82
-    }
-  ];
+campaigns = [
+  {
+    title: 'Abrigando Huancayo',
+    status: 'Urgente',
+    location: 'Pariahuanca',
+    progress: 75,
+    image: '/images/campanas/abrigo.jpg'
+  },
+  {
+    title: 'Alimentos para Comedores',
+    status: 'Activa',
+    location: 'Huancayo',
+    progress: 60,
+    image: '/images/campanas/alimentos.jpg'
+  },
+  {
+    title: 'Apoyo a Orfanatos',
+    status: 'Activa',
+    location: 'El Tambo',
+    progress: 82,
+    image: '/images/campanas/orfanato.jpg'
+  }
+];
 
 }
