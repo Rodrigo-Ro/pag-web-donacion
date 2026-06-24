@@ -1,7 +1,0 @@
-node_modules/
-backend/__pycache__/
-backend/src/__pycache__/
-*.pyc
-dist/
-build/
-.env
