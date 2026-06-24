@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS donaciones_db;
+USE donaciones_db;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: localhost    Database: donaciones_db
@@ -21,7 +23,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '86a24de6-6f46-11f1-8b60-38a74642d8a2:1-6';
+--SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '86a24de6-6f46-11f1-8b60-38a74642d8a2:1-6';
 
 --
 -- Table structure for table `donaciones`
