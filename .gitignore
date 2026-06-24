@@ -1,0 +1,14 @@
+# Python compilado
+__pycache__/
+*.pyc
+*.pyo
+
+# Entorno virtual Python
+backend/.venv/
+
+# Variables de entorno
+.env
+
+# Sistema
+.DS_Store
+Thumbs.db
