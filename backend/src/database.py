@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Cambia "admin123" por tu contraseña real de MySQL
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:admin123@localhost:3306/donaciones_db"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:admin1234@localhost:3306/donaciones_db"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
