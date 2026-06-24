@@ -1,0 +1,76 @@
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+Campañas Activas
+</h2>
+
+<p class="text-muted">
+Elige una campaña y haz la diferencia hoy mismo.
+</p>
+
+</div>
+
+<div class="row">
+
+<div
+class="col-lg-4 mb-4"
+*ngFor="let campaign of campaigns">
+
+<div class="card shadow-sm h-100">
+
+<img
+  [src]="campaign.image"
+  class="img-campania card-img-top"
+  alt="{{campaign.title}}">
+
+<div class="card-body">
+
+<h4>{{campaign.title}}</h4>
+
+<span
+class="badge mb-3"
+[ngClass]="campaign.status === 'Urgente'
+? 'bg-danger'
+: 'bg-success'">
+
+{{campaign.status}}
+
+</span>
+
+<p>
+📍 {{campaign.location}}
+</p>
+
+<div class="progress">
+
+<div
+class="progress-bar bg-success"
+[style.width.%]="campaign.progress">
+
+{{campaign.progress}}%
+
+</div>
+
+</div>
+
+<button
+  class="btn btn-primary w-100 mt-4"
+  routerLink="/donar">
+  Donar a esta campaña
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
