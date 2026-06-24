@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-donar',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './donar.html',
-  styleUrl: './donar.css'
+  styleUrls: ['./donar.css']
 })
-export class Donar {
+export class Donar implements OnInit {
 
-  donationForm: FormGroup;
-  successMessage = '';
-  submitted = false;
+  donationForm!: FormGroup;
 
-  tiposDonacion = [
+  successMessage: string = '';
+  errorMessage: string = '';
+  submitted: boolean = false;
+
+  tiposDonacion: string[] = [
     'Ropa',
     'Alimentos',
     'Útiles Escolares',
@@ -23,64 +25,52 @@ export class Donar {
     'Otros'
   ];
 
-  constructor(private fb: FormBuilder) {
+  tipoArray: string[] = [];
 
-    this.donationForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-
-      email: ['', [Validators.required, Validators.email]],
-
-      telefono: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^\d{9}$/) // exactamente 9 números
-        ]
-      ],
-
-      tipo: this.fb.array([], Validators.required),
-
-      puntoEntrega: ['', Validators.required],
-
-      descripcion: ['', [Validators.required, Validators.minLength(10)]]
+  ngOnInit(): void {
+    this.donationForm = new FormGroup({
+      nombre: new FormControl('', Validators.required),
+      tipo: new FormControl('', Validators.required),
+      monto: new FormControl('', [Validators.required, Validators.min(1)]),
+      telefono: new FormControl(''),
+      email: new FormControl(''),
+      descripcion: new FormControl('')
     });
   }
 
-  get tipoArray() {
-    return this.donationForm.get('tipo') as FormArray;
-  }
-
-  // Solo números (limpia cualquier otro carácter)
-  allowOnlyNumbers(event: any) {
-    event.target.value = event.target.value.replace(/[^0-9]/g, '');
-  }
-
-  onCheckboxChange(event: any) {
-    const value = event.target.value;
-    const checked = event.target.checked;
-
-    if (checked) {
-      this.tipoArray.push(this.fb.control(value));
-    } else {
-      const index = this.tipoArray.controls.findIndex(x => x.value === value);
-      this.tipoArray.removeAt(index);
-    }
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
-    if (this.donationForm.invalid || this.tipoArray.length === 0) {
+    if (this.donationForm.invalid) {
+      this.errorMessage = 'Por favor completa todos los campos correctamente.';
       this.successMessage = '';
-      this.donationForm.markAllAsTouched();
       return;
     }
 
-    this.successMessage = '✔ La solicitud fue enviada con éxito';
-    console.log(this.donationForm.value);
-
+    this.successMessage = 'Donación registrada correctamente 🎉';
+    this.errorMessage = '';
     this.donationForm.reset();
-    this.tipoArray.clear();
     this.submitted = false;
+    this.tipoArray = [];
+  }
+
+
+  allowOnlyNumbers(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
+  onCheckboxChange(event: any): void {
+    const value = event.target.value;
+
+    if (event.target.checked) {
+      this.tipoArray.push(value);
+    } else {
+      this.tipoArray = this.tipoArray.filter(t => t !== value);
+    }
+
+    this.donationForm.patchValue({
+      tipo: this.tipoArray
+    });
   }
 }
